@@ -16,8 +16,8 @@ function addBookToLibrary() {
   const pages = document.getElementById('pageNumber').value;
   const read = document.getElementById('read').checked;
   const book = new Book(title, author, pages, read);
-	myLibrary.push(book);
-	render();
+  myLibrary.push(book);
+  render();
   console.log(myLibrary);
 }
 
