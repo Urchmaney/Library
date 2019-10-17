@@ -1,4 +1,8 @@
-const myLibrary = [];
+const myLibrary = [
+  { title: 'Welcome', author: 'Luke Vim', pages: 378, read: true },
+  { title: 'Good bye', author: 'James Hens', pages: 600, read: false },
+  { title: 'Lonely walk', author: 'Peter Spill', pages: 300, read: true }
+];
 
 function Book(title, author, pages, read) { // the constructor...
   this.title = title;
@@ -9,6 +13,24 @@ function Book(title, author, pages, read) { // the constructor...
 
 Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 
+function render() {
+  const theader = '<tr><td>Name</td><td>Author</td><td>Page Number</td><td>Read</td><td></td></tr>';
+  document.getElementById('libraryTable').innerHTML = theader;
+  myLibrary.forEach((book) => {
+    document.getElementById('libraryTable').innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td><input type="checkbox" ${book.read ? 'checked' : ''}></td></tr>`;
+  });
+}
+
+function displayForm() {
+  document.getElementById('form-container').style.display = 'block';
+}
+function hideForm() {
+  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('name').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('pageNumber').value = '';
+}
+
 function addBookToLibrary() {
   console.log(myLibrary);
   const title = document.getElementById('name').value;
@@ -18,12 +40,9 @@ function addBookToLibrary() {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
   render();
+  hideForm();
   console.log(myLibrary);
 }
 
-function render() {
-  myLibrary.forEach((book) => {
-    document.getElementById('libraryTable').innerHTML += `<tr><td>${book.name}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.read}</td></tr>`;
-  });
-}
-// document.addEventListener("load", render());
+
+document.addEventListener('load', render());

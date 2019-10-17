@@ -27,12 +27,12 @@
     </table>
 
     <div>
-        <button class="addBook">
+        <button class="addBook" onclick="displayForm()">
             Add book
         </button>
     </div>
 
-    <div>
+    <div style="display: none" id = "form-container">
         <form onsubmit="addBookToLibrary();return false">
             <label>
                 Name
@@ -42,7 +42,7 @@
                 Author
             </label><br>
             <input type="text" id="author"><br>
-            <label>Page Numbers</label><br>
+            <label>Page Numbers</label><br> 
             <input type="number" id="pageNumber"><br>
             <label>Read</label><br>
             <input type="checkbox" id="read"><br>
