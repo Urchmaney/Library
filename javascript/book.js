@@ -1,7 +1,13 @@
 const myLibrary = [
-  { title: 'Welcome', author: 'Luke Vim', pages: 378, read: true },
-  { title: 'Good bye', author: 'James Hens', pages: 600, read: false },
-  { title: 'Lonely walk', author: 'Peter Spill', pages: 300, read: true }
+  {
+    title: 'Welcome', author: 'Luke Vim', pages: 378, read: true,
+  },
+  {
+    title: 'Good bye', author: 'James Hens', pages: 600, read: false,
+  },
+  {
+    title: 'Lonely walk', author: 'Peter Spill', pages: 300, read: true,
+  },
 ];
 
 function Book(title, author, pages, read) { // the constructor...
@@ -21,7 +27,7 @@ function render() {
   });
 }
 
-function removeBook(index){
+function removeBook(index) {
   myLibrary.splice(index, 1);
   render();
 }
@@ -36,7 +42,6 @@ function hideForm() {
 }
 
 function addBookToLibrary() {
-  console.log(myLibrary);
   const title = document.getElementById('name').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pageNumber').value;
@@ -45,7 +50,6 @@ function addBookToLibrary() {
   myLibrary.push(book);
   render();
   hideForm();
-  console.log(myLibrary);
 }
 
 
