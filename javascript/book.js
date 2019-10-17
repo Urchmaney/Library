@@ -22,13 +22,16 @@ Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pages} page
 function render() {
   const theader = '<tr><td>Name</td><td>Author</td><td>Page Number</td><td>Read</td><td></td></tr>';
   document.getElementById('libraryTable').innerHTML = theader;
-  myLibrary.forEach((book, index) => {
+  const lib = JSON.parse(localStorage.getItem('library'));
+  lib.forEach((book, index) => {
     document.getElementById('libraryTable').innerHTML += `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td><input type="checkbox" ${book.read ? 'checked' : ''}></td><td><button class="removeBook" onclick="removeBook(${index})">Remove Book</button></td></tr>`;
   });
 }
 
 function removeBook(index) {
-  myLibrary.splice(index, 1);
+  const lib = JSON.parse(localStorage.getItem('library'));
+  lib.splice(index, 1);
+  localStorage.setItem('library', JSON.stringify(lib));
   render();
 }
 function displayForm() {
@@ -47,10 +50,18 @@ function addBookToLibrary() {
   const pages = document.getElementById('pageNumber').value;
   const read = document.getElementById('read').checked;
   const book = new Book(title, author, pages, read);
-  myLibrary.push(book);
+  const lib = JSON.parse(localStorage.getItem('library'));
+  lib.push(book);
+  localStorage.setItem('library', JSON.stringify(lib));
   render();
   hideForm();
 }
 
 
+function setup() {
+  if (!localStorage.getItem('library')) {
+    localStorage.setItem('library', JSON.stringify(myLibrary));
+  }
+}
+document.addEventListener('load', setup());
 document.addEventListener('load', render());
