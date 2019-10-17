@@ -8,4 +8,3 @@ Used:
 
 - Fatima Ahmed [http://github.com/fatymahmed]
 - Kingsley Uche [https://github.com/Urchmaney]
-
